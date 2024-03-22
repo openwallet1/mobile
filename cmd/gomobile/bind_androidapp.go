@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	DefaultLibName = "openwallet"
+	DefaultLibName = "open_wallet_sdk"
 )
 
 func goAndroidBind(gobind string, pkgs []*packages.Package, targets []targetInfo) error {

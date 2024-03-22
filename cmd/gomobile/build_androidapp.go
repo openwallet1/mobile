@@ -32,6 +32,7 @@ func goAndroidBuild(pkg *packages.Package, targets []targetInfo) (map[string]boo
 	appName := path.Base(pkg.PkgPath)
 	libName := androidPkgName(appName)
 
+	libName = DefaultLibName
 	// TODO(hajimehoshi): This works only with Go tools that assume all source files are in one directory.
 	// Fix this to work with other Go tools.
 	dir := filepath.Dir(pkg.GoFiles[0])

@@ -34,7 +34,7 @@ public class Seq {
 	private static final GoRefQueue goRefQueue = new GoRefQueue();
 
 	static {
-		System.loadLibrary("openwallet");
+		System.loadLibrary("open_wallet_sdk");
 		init();
 		Universe.touch();
 	}
