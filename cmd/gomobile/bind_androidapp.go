@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	DefaultLibName = "gojni"
+	DefaultLibName = "open_wallet_sdk"
 )
 
 func goAndroidBind(gobind string, pkgs []*packages.Package, targets []targetInfo) error {
@@ -225,9 +225,9 @@ func buildAAR(srcDir, androidDir string, pkgs []*packages.Package, targets []tar
 	for _, t := range targets {
 		toolchain := ndk.Toolchain(t.arch)
 		//lib := toolchain.abi + "/libgojni.so"
-		lib := fmt.Sprintf("%s/lib%s.so", toolchain.abi, "targetPkg")
+		lib := fmt.Sprintf("%s/lib%s.so", toolchain.abi, targetPkg)
 
-		lib = "test"
+		//lib = "test"
 
 		w, err = aarwcreate("jni/" + lib)
 		if err != nil {
