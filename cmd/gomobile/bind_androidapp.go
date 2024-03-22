@@ -21,11 +21,11 @@ import (
 )
 
 const (
-	DefaultLibName = "open_wallet_sdk"
+	DefaultLibName = "openwallet"
 )
 
 func goAndroidBind(gobind string, pkgs []*packages.Package, targets []targetInfo) error {
-	targetPkg := pkgs[0].Name
+	targetPkg := DefaultLibName
 	fmt.Println("goAndroidBind, targetPkg: ", targetPkg)
 	if _, err := sdkpath.AndroidHome(); err != nil {
 		return fmt.Errorf("this command requires the Android SDK to be installed: %w", err)
@@ -119,7 +119,7 @@ func buildSrcJar(src string) error {
 func buildAAR(srcDir, androidDir string, pkgs []*packages.Package, targets []targetInfo) (err error) {
 	var out io.Writer = ioutil.Discard
 
-	targetPkg := pkgs[0].Name
+	targetPkg := DefaultLibName
 	if buildO == "" {
 		//buildO = pkgs[0].Name + ".aar"
 		buildO = targetPkg + ".aar"
@@ -154,7 +154,7 @@ func buildAAR(srcDir, androidDir string, pkgs []*packages.Package, targets []tar
 	const manifestFmt = `<manifest xmlns:android="http://schemas.android.com/apk/res/android" package=%q>
 <uses-sdk android:minSdkVersion="%d"/></manifest>`
 	//fmt.Fprintf(w, manifestFmt, "go."+pkgs[0].Name+".gojni", buildAndroidAPI)
-	fmt.Fprintf(w, manifestFmt, "go."+targetPkg+"."+targetPkg, minAndroidAPI)
+	fmt.Fprintf(w, manifestFmt, "go."+targetPkg+"."+targetPkg, buildAndroidAPI)
 
 	w, err = aarwcreate("proguard.txt")
 	if err != nil {
